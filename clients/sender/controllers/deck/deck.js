@@ -4,7 +4,10 @@ angular.module('cardcast.deck', [
 .controller('DeckCtrl', function($scope, $location, $routeParams, $sanitize,$timeout, $sce, Service, deck, $rootScope) {
   $scope.deck = deck;
   $scope.currentCard = {};
+    $scope.editing = false
 
+  $scope.handleSubmit = (deck) => Service.updateDeck(deck).then(() =>$scope.switch())
+  $scope.switch = () => $scope.editing = !$scope.editing
   $scope.preview = '';
   $scope.setCurrent = function(card) {
     $scope.deck.current = card._id;
