@@ -10,12 +10,18 @@
           <h1 class="mdl-card__title-text">
             {{deck.title}}
           </h1>
-          <btn action="goToDeck()">Back</btn>
-          <a href="#!/receiver/{{deck._id}}" target="_blank" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">Web Cast</a>
-          <!-- Displays 'Cast' with associated behavior for all cards not being casted -->
-          <btn accent action="showPopup(deck)">Chrome Cast</btn>
-          <!-- Displays 'Stop' and associated behavior for the card being cast -->
-          <btn accent action="stopCast()" ng-if="castingOn">Stop</btn>
+          <button ng-click="goToDeck()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">Back</button>
+          <a href="#!/receiver/{{deck._id}}" target="_blank" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">WEBCAST</a>
+   
+        <button ng-if="!castingOn"
+               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+               ng-click="showPopup(deck)"/>CHROME CAST</button>
+
+        <!-- Displays 'Stop' and associated behavior for the card being cast -->
+         <button ng-if="castingOn"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                ng-click="stopCast()"/>Stop</button>
+
         </div>
 
       </div>
@@ -30,24 +36,24 @@
           <h3 class="mdl-card__title-text">{{ card.title }}</h3>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <btn flat action="deleteCard(card)">Delete</btn>
           <a href="#!/decks/card/{{card._id}}/edit"><button class="mdl-button mdl-js-button mdl-js-ripple-effect">Edit</button></a>
-          <btn action="setCurrent(card)" accent>Select</btn>
-        </div>
-      </div>
-    </div>
-  <div class="col-md-8">
-      <!-- preview of receiver -->
-      <div class="receiver-preview card-canvas-preview mdl-card mdl-shadow--6dp" ng-controller="ReceiverCtrl" style="width:100%;">
-        <div class="mdl-card__supporting-text">
-          <!-- This is what actually gets cast to the screen -->
-          <div class="markdown" ng-bind-html="text"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+          <input type="button" value="Delete" class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="deleteCard(card)"/>
+          <button ng-click="setCurrent(card)"
+         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        >Cast</button>
 
-  <!-- Add Card Button -->
-  <a href="#!/decks/{{deck._id}}/new" class="add-card mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent mdl-shadow--4dp">
-    <i class="material-icons">add</i>
-  </a>
+        </div>
+      </div>
+    </div>
+    <!-- Card Preview -->
+    <preview></preview>
+
+  <!-- This just adds some space at the bottom so scrolling looks nice -->
+  <div class="deck-footer"></div>
+
+</div>
+
+<!-- Add Card Button -->
+<a href="#!/decks/{{deck._id}}/new" class="add-card mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent mdl-shadow--4dp">
+  <i class="material-icons">add</i>
+</a>
