@@ -5,12 +5,14 @@ angular.module('cardcast.main', [])
 
   // Set $scope.deck with info received from deck resolve
   $scope.decks = deck;
+  $scope.editing = false
   $scope.currentDeck = {};
   $scope.showWarning = false;
   $scope.showDelete = false;
   $scope.username = user;
   $scope.title = 'Untitled';
-   $scope.handleSubmit = (deck) => Service.updateDeck(deck)
+   $scope.handleSubmit = (deck) => Service.updateDeck(deck).then(() =>$scope.switch())
+   $scope.switch = () => $scope.editing = !$scope.editing
 
 
   // First checks for a session and sees if anyone else is currently casting.

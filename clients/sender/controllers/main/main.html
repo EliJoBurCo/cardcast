@@ -39,16 +39,17 @@
       <div class="card mdl-card mdl-shadow--4dp">
 
         <div class="mdl-card__title">
-          <h3
-            class="mdl-card__title-text" 
-           ng-click="showDetails = !showDetails"
-          >{{deck.title}}</h3>
+                <div ng-if="!editing" 
+               ng-click="switch()">{{deck.title}}</div>
+
+        <!-- Displays 'Stop' and associated behavior for the card being cast -->
+     
 
 
 
-          <div 
+          <div ng-if="editing"
           ng-keyup="$event.keyCode == 13 ? handleSubmit(deck) : null "
-          ng-show="showDetails">
+          >
               <input class="mdl-textfield__input" ng-model="deck.title" type="text">
             
             </div>
