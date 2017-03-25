@@ -7,9 +7,18 @@
       <div class="card-deck mdl-card mdl-shadow--4dp">
 
         <div class="mdl-card__title">
-          <h1 class="mdl-card__title-text">
-            {{deck.title}}
-          </h1>
+         
+            
+                <h1 ng-if="!editing" 
+               ng-click="switch()">{{deck.title}}</h1>
+               
+          <h1 ng-if="editing"
+          ng-keyup="$event.keyCode == 13 ? handleSubmit(deck) : null "
+          >
+              <input class="mdl-textfield__input" ng-model="deck.title" type="text">
+            
+            </h1>
+
           <button ng-click="goToDeck()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">Back</button>
           <a href="#!/receiver/{{deck._id}}" target="_blank" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">WEBCAST</a>
    
