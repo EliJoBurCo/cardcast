@@ -11,8 +11,8 @@ angular.module('cardcast.main', [])
   $scope.showDelete = false;
   $scope.username = user;
   $scope.title = 'Untitled';
-   $scope.handleSubmit = (deck) => Service.updateDeck(deck).then(() =>$scope.switch())
-   $scope.switch = () => $scope.editing = !$scope.editing
+  $scope.handleSubmit = (deck) => Service.updateDeck(deck).then(() =>$scope.switch())
+  $scope.switch = () => $scope.editing = !$scope.editing
 
 
   // First checks for a session and sees if anyone else is currently casting.
