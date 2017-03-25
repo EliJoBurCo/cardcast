@@ -228,4 +228,16 @@ angular.module('cardcast', [
     componentHandler.upgradeAllRegistered();
   });
 
+})
+.directive('preview', function() {
+  return {
+    template:
+      '<div class="card-preview col-md-6">' +
+        '<div class="mdl-card mdl-shadow--4dp">' +
+          '<div class="mdl-card__supporting-text">' +
+            '<div ng-bind-html="preview"></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+  }
 });
